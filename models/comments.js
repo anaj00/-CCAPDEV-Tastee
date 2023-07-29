@@ -6,20 +6,18 @@ const commentsSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    user: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'users',
+    username: {
+        type: String,
         required: true,
         trim: true
     },
-    user_replied: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'users',
+    username_replied: {
+        type: String,
         required: true,
         trim: true
     },
-    restaurant: {
-        type: mongoose.SchemaTypes.ObjectId,
+    restaurant_id: {
+        type: Number,
         ref: 'restaurants',
         required: true,
         trim: true,
@@ -32,17 +30,7 @@ const commentsSchema = new mongoose.Schema({
     date_posted: {
         type: Date,
         default: Date.now
-    },
-    upvote_count: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    downvote_count: {
-        type: Number,
-        required: true,
-        default: 0
-    },
+    }
 })
 
 // Looks at the highest review ID, if its taken, it add +1 to the reviewID to the new one

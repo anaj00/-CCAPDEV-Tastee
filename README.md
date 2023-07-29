@@ -7,7 +7,7 @@
 1. Install node.js
    
 2. Install express, mongoose, and handlebars in the terminal of your IDEs<br>
-      - Type `npm i express mongoose express-handlebars mongodb`
+      - Type `npm i express mongoose express-handlebars mongodb nodemon`
 
 3. To run, type `npm run start` in the terminal.
    This runs the app.js file without `nodemon` in the background.

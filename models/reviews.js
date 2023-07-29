@@ -6,14 +6,14 @@ const reviewSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    user: {
-        type: Object,
+    username: {
+        type: String,
         ref: 'users',
         required: true,
         trim: true
     },
-    restaurant: {
-        type: Object,
+    restaurant_id: {
+        type: Number,
         ref: 'restaurants',
         required: true,
         trim: true,

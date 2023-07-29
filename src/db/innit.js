@@ -15,17 +15,17 @@ export function initializeCollections(){
           }
     });
 
-    db.createCollection("owner_account")
-    .then( () =>{
-        console.log("Created Table owner_account successfully")
-    })
-    .catch( err =>{
-        if (err.code === 48) {
-            console.log("The table owner_account already exists");
-          } else {
-            console.log("An error occurred:", err);
-          }
-    });
+    // db.createCollection("owner_account")
+    // .then( () =>{
+    //     console.log("Created Table owner_account successfully")
+    // })
+    // .catch( err =>{
+    //     if (err.code === 48) {
+    //         console.log("The table owner_account already exists");
+    //       } else {
+    //         console.log("An error occurred:", err);
+    //       }
+    // });
 
     db.createCollection("comments")
     .then( () =>{
@@ -63,17 +63,17 @@ export function initializeCollections(){
           }
     });
 
-    db.createCollection("tags")
-    .then( () =>{
-        console.log("Created Table tags successfully")
-    })
-    .catch( err =>{
-        if (err.code === 48) {
-            console.log("The table tags already exists");
-          } else {
-            console.log("An error occurred:", err);
-          }
-    });
+    // db.createCollection("tags")
+    // .then( () =>{
+    //     console.log("Created Table tags successfully")
+    // })
+    // .catch( err =>{
+    //     if (err.code === 48) {
+    //         console.log("The table tags already exists");
+    //       } else {
+    //         console.log("An error occurred:", err);
+    //       }
+    // });
 
    initializeDbContents();
 

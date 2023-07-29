@@ -21,6 +21,7 @@ router.get("/:restaurant_id", async (req, res, next) => {
     const userArr = req.app.locals.user;
     const user = userArr[0];
     const restaurantId = req.params.restaurant_id;
+    console.log(restaurantId);
     // console.log("------------------------", restaurantId);
     const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
     const restaurant = result[0];

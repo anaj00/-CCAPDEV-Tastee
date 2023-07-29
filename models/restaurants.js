@@ -17,7 +17,7 @@ const restaurantSchema = new mongoose.Schema({
     },
     average_rating: {
         type: Number,
-        default: 0,
+        default: 3,
     },
     banner: {
         type: String,

@@ -14,7 +14,7 @@ const queryCommentsDb= commentsOP; //comments database
 const queryReviewsDb = reviewsOP; //reviews database
 const queryRestaurantDb = restaurantOP; //restaurant database
 
-//set mongoose operations to return leaned values
+// set mongoose operations to return leaned values
 // queryUserDb.setOptions({ lean: true}); 
 // queryCommentsDb.setOptions({ lean: true}); 
 // queryReviewsDb.setOptions({ lean: true}); 
@@ -22,43 +22,31 @@ const queryRestaurantDb = restaurantOP; //restaurant database
 
 
 
-//constant declarations
+// constant declarations
 const db = getDb(); 
 
 export async function initializeDbContents(){
-    //TODO: implement required number of base entries per collection in the database
+    // TODO: implement required number of base entries per collection in the database
 
-    // await insertNewUser('Nootie', 'supersecret password');
+    // // Restaurants
+    // await insertNewRestaurant("Mcdonalds", "27 Bristol St.", "mcdo.png", "mcdo_static.webp", 1234567);
+    // await insertNewRestaurant("Tokyo Tokyo", "52 Gov A. Santos Ave.", "tokyotokyo_header.jpg", "tokyotokyo_static.webp", 65432310);
+    // await insertNewRestaurant("Jollibee", "104 Dunedin Corner Regalado Ave.", "jollibee_header.jpg", "jabee_static.webp", 9384039283);
+    // await insertNewRestaurant("Mang Inasal", "999 Ampol St.", "manginasal_header.jpg", "manginasal_static.webp", 5555555);
+    // await insertNewRestaurant("Kenny Rogers", "2 Taft Avenue", "kennyrogers_header.jpg", "kennyrogers_static.webp", 93840234);
 
-    // await insertNewRestaurant('macas in pajamas', 'Talongie st.', './public/images/puga.jpeg');
-    // await insertNewRestaurant('Oinkery', 'Oinkery St.', './public/images/puga.jpeg');
-    // await insertNewRestaurant('Talongie bakery', 'estrada st.', './public/images/puga.jpeg');
-
-
-
+    // // Users
+    // await insertNewUser('Nootie', 'NOOTIE11111');
     // await insertNewUser('Oinkie','MAMA MO');
-    // const testies = await queryUserDb.where('username').equals("Nootie").exec();
-    // console.log(testies[0]._id + " hi");
 
-  
-
-    // const testies = await queryRestaurantDb.where('name').equals("macas in pajamas").exec();
-    // if (testies.length > 0) {
-    //     console.log(testies[0]._id + " hi");
-    //   } else {
-    //     console.log("No restaurant found with the name 'macas in pajamas'");
-    //   }
-    // await insertNewReview('Nootie', 'macas in pajamas', 'MAMA MO TALONG', 'WALANG NUGGETS!', 69);
-   
-    //await insertNewComment('macas in pajamas', 'Oinkie', 'Nootie', 'Auq na dito');
 }   
-
+ 
 export async function insertNewUser(username, pw){
     await userOP.create({
         username: username,
         password: pw,
     }).then( () => {
-        console.log("Insert Op sucessful: " + username);
+        console.log("Insert user sucessful: " + username);
     }).catch((err) =>{
         console.log(err);
     })
@@ -70,60 +58,45 @@ export async function insertNewReview(username, restaurant, title, content, rati
     console.log(restaurant);
     await reviewsOP.create({
         review_id: id,
-        user: {
-            username: username.username,
-            password: username.password,
-            date_created: username.date_created,
-            pfp: username.pfp,
-            bio: username.bio
-        },
-        restaurant: {
-            restaurant_id: restaurant.restaurant_id,
-            name: restaurant.name,
-            address: restaurant.address,
-            average_rating: restaurant.average_rating,
-            banner: restaurant.banner,
-            icon: restaurant.icon, 
-            contact: restaurant.contact
-        },
+        username: username.username,
+        restaurant_id: restaurant.restaurant_id,
         title: title,
         content: content,
         rating_given: rating
     })
     .then( () => {
-        console.log("Insert Op successful: " + username);
+        console.log("Insert review successful: " + username);
     })
     .catch( (err) =>{
         console.log(err);
     })
 }
 
+// DONE: Remodify insert
 export async function insertNewComment(restaurant, username, replied_to, content){
-    const userObjectIDQuery = userOP.where('username').equals(username);
-    const userObjectID = await userObjectIDQuery.exec();
-    const repliedObjectIdQuery = userOP.where('username').equals(replied_to);
-    const repliedObjectId = await repliedObjectIdQuery.exec();
+    const userObj = await userOP.where('username').equals(username).exec();
+    const user_repliedObj = userOP.where('username').equals(replied_to).exec();
 
     const highestId =  await commentsOP.findOne().sort('-comment_id');
     const id = highestId ? highestId.comment_id + 1 : 1;
-    console.log(id);
-    const restaurantObjectId = await queryRestaurantDb.where('name').equals(restaurant).exec();
+    // console.log(id);
+    const restaurantObj = await queryRestaurantDb.where('name').equals(restaurant).exec();
     await commentsOP.create({
-        user: userObjectID[0]._id,
+        username: userObj[0].username,
         comment_id: id,
-        restaurant: restaurantObjectId[0]._id,
+        restaurant: restaurantObj[0].id,
         content: content,
-        user_replied: repliedObjectId[0]._id
+        user_replied: user_repliedObj[0].username
     })
     .then(() => {
-        console.log("Insert Comment Successful: " + id);
+        console.log("Insert comment successful: " + id);
     })
     .catch( (err) =>{
         console.log(err);
     })
 }
 
-export async function insertNewRestaurant(restaurantName, address, banner_path){
+export async function insertNewRestaurant(restaurantName, address, banner_path, icon_path, contact){
     const highestId =  await restaurantOP.findOne().sort('-restaurant_id');
     const id = highestId ? highestId.restaurant_id + 1 : 1;
 
@@ -131,10 +104,12 @@ export async function insertNewRestaurant(restaurantName, address, banner_path){
         restaurant_id: id,
         name: restaurantName, 
         address: address,
-        banner: banner_path
+        banner: banner_path,
+        contact: contact,
+        icon: icon_path
     })
     .then(() => {
-        console.log("Insert Restaurant Successful: " + restaurantName);
+        console.log("Insert restaurant successful: " + restaurantName);
     })
     .catch( (err) =>{
         console.log(err);
