@@ -1,5 +1,5 @@
-# Tastee-MC02
-[CCAPDEV] MC02 | A food review website wherein users can rate different restaurants around the Metro.
+# Tastee
+[CCAPDEV] MC | A food review website wherein users can rate different restaurants around the Metro.
 
 # How to run 
 0. Import data in `database_data`, to a table named `Tastee`
@@ -18,10 +18,4 @@
 # Comments
 For some reason, the .env files won't work. So we had to integrate the port into the code itself. #SecurityBreach
 
-# Things that do not work :(, that's why we removed it
-- Search
-- Comments
-- Sign in/Register functionality
-- Edit/Delete post
-- Edit profile
   
