@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "64be21d72d305accec29dbd4"
+  },
+  "username": "Nootie",
+  "password": "Nootie1234",
+  "date_created": {
+    "$date": "2012-12-11T16:00:00.000Z"
+  },
+  "pfp": "nootie.png",
+  "bio": "Iceberg brr"
+},
+{
+  "_id": {
+    "$oid": "64be24122d305accec29dbda"
+  },
+  "username": "Oinkie",
+  "password": "Oinkie1234",
+  "date_created": "12/1/01",
+  "pfp": "oinkie.jpg",
+  "bio": "I love lechon"
+}]

@@ -1,0 +1,463 @@
+<link rel="stylesheet" href="../static/css/restaurant_page.css">
+<script src="../static/js/restaurant_page.js"></script>
+
+<main>
+        <div class="restaurant-container">
+            <img class="restaurant-picture" src="../static/images/{{restaurant.banner}}">
+            <div class="restaurant-information">
+                <div class="res-header">
+                    <div class="res-title">{{restaurant.name}}</div>
+                    <div class="rating-container">
+                        <img class="star-box" src="../static/images/Star.png">
+                        <div class="res-rate">{{restaurant.average_rating}}/5</div>
+                    </div>
+                </div>
+
+                <div class="res-bio">
+                    <div class="res-address">{{restaurant.address}}</div>
+                    <div class="res-number">{{restaurant.contact}}</div>
+                </div>
+            </div>
+            </img>
+        </div>
+
+
+        <div class="review-comment-box">
+                <form action="http://localhost:3000/restaurant/{{restaurant.restaurant_id}}" class="review-box-content" method="POST">
+                    <div class="review-box-title-div">
+                    <textarea id="review-box-title" class="review-box-title" placeholder="Add a title" name="title"></textarea>
+                        <div class="star-group">
+                            <input type="radio" class="star" id="one" name="star_rating" value = 1>
+                            <input type="radio" class="star" id="two" name="star_rating" value = 2>
+                            <input type="radio" class="star" id="three" name="star_rating" value = 3>
+                            <input type="radio" class="star" id="four" name="star_rating" value = 4>
+                            <input type="radio" class="star" id="five" name="star_rating" checked value = 5>
+                        </div>
+                    </div>
+                    <textarea id="review-box-review" class="review-box-review" placeholder="Write a review" name="content"></textarea>
+                    <button type="submit" class="review-box-button" onclick="">Post</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="reviews">
+            <div class="review-title">Reviews</div>
+            <div class="review-container">
+                
+
+                {{#each reviews}}
+                {{>review}}
+                {{/each}}
+                <!-- review 1 -->
+                {{!-- <div class="review-item">
+                    <div class="review-text">
+                        Good customer service! Truly love their fries, fried to perfection!
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/puga-chan.html">
+                            <img class="reviewer-icon" src="../images/photo-1517849845537-4d257902454a.webp">
+                            <div class="reviewer-user">Puga-chan</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">16</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">2</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div> --}}
+                
+                {{!-- {{#each reviews}}
+                {{>review}}
+                {{/each}} --}}
+                
+
+
+
+                <!-- review 2 -->
+                
+
+                {{!--
+                <!-- review 2 -->
+                <div class="review-item">
+                    <div class="review-text">
+                        May bidet ba dito?
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/jana.html">
+                            <img class="reviewer-icon" src="../images/manny pacman.webp">
+                            <div class="reviewer-user">Jana</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">100</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">0</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- comments section -->
+                    <!-- comment 1 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                Solid po CR dito bossing.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/puga-chan.html">
+                                <img class="reviewer-icon" src="../images/photo-1517849845537-4d257902454a.webp">
+                                <div class="reviewer-user">Puga-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                Certified may bidet po. Kasing lakas ng pagmamahal niya sayo.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+
+                </div>
+
+                <!-- review 3 -->
+                <div class="review-item">
+                    <div class="review-text">
+                        Softdrinks here taste so bad...
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/jana.html">
+                            <img class="reviewer-icon" src="../images/manny pacman.webp">
+                            <div class="reviewer-user">Jana</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">12</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">20</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+                    </div>
+
+                    <!-- comments section -->
+                    <!-- comment 1 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                Have you tried addressing it to staff?
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                That happened to me once. I addressed it to staff and fixed it right away.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div>
+
+                <!-- review 4 -->
+                <div class="review-item">
+                    <div class="review-text">Mcdonalds chicken is better than Chickenjoy!</div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/hans.html">
+                            <img class="reviewer-icon" src="../images/taguro.jpg">
+                            <div class="reviewer-user">Hans</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">4</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">4</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- comments section -->
+                    <!-- comment 1 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                No
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                No.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                No.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                No.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- comment 2 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                No.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div>
+
+                <!-- review 4 -->
+                <div class="review-item">
+                    <div class="review-text">Love the nuggets!</div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/aaron.html">
+                            <img class="reviewer-icon" src="../images/eugene.webp">
+                            <div class="reviewer-user">Aaron</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">16</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">4</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div>
+
+                <!-- review 4 -->
+                <div class="review-item">
+                    <div class="review-text">
+                        Absolutely terrible service. These restaurants don’t want to help anyone anymore. They just
+                        expect you to order online
+                        and come pick it up so they have to deal with you as little as possible. I went to a McDonalds
+                        for lunch and none of the
+                        kiosks were working (they expect you to use a kiosk because they don’t want to actually help
+                        anyone). So I waited in
+                        line to order at the counter (usually there is no one working the counter. I assume they were
+                        only there because the
+                        kiosks were not working). When I was finally got to the counter, I wasn’t able to place my order
+                        because the person at
+                        the register didn’t speak English. She had no clue what I was trying to order. I ended leaving
+                        with my money and a empty
+                        stomach. This is not the first time I have experienced this. Absolutely unacceptable. And no one
+                        cares at all.
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/hans.html">
+                            <img class="reviewer-icon" src="../images/taguro.jpg">
+                            <div class="reviewer-user">Hans</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">16</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">4</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- comments section -->
+                    <!-- comment 1 -->
+                    <div class="comments">
+                        <div class="user-comment">
+                            <a class="review-user" href="../user_pages/edgar-chan.html">
+                                <img class="reviewer-icon" src="../images/puga.jpeg">
+                                <div class="reviewer-user">Edgar-chan</div>
+                            </a>
+
+                            <div class="user-comment-text">
+                                Im so sorry this has happened to you.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- review 6 -->
+                <div class="review-item">
+                    <div class="review-text">
+                        The food is delicious and great. I love the taste and their fries is my new favorite. The staffs
+                        are nice.
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/aaron.html">
+                            <img class="reviewer-icon" src="../images/eugene.webp">
+                            <div class="reviewer-user">Aaron</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">16</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">4</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+                </div>
+
+                <!-- review 5 -->
+                <div class="review-item">
+                    <div class="review-text">
+                        I was asking for 2pcs of pickles only on the side (take out) order. The Manager argued that its
+                        not part of the
+                        sandwich
+                        ingredients. Wherever you to different countrids pickles is usually part of sandwich menu
+                        ingredients. It makes
+                        more
+                        yummy if you add pickles. When I was given 2pcs. the Manager who is in the counter seems to be
+                        hesitant to
+                        give.. how
+                        much it worth if you loose 10customers from 1person.. Is it how you protect your food cost for
+                        the month.. How
+                        much we
+                        spent or paying in one set of meal de luxe? Is 2 pcs of pickles is more than it cost to a burger
+                        de luxe meal..
+                        Hey
+                        dudes what's up... Be thankful I'm not asking for 1bucket of pickles. Think of it This was
+                        experience when I
+                        went to
+                        Bacobo Ermita Branch. So disgusting Customer Service.. One thing Manager is arguing pickles is
+                        dedicated for a
+                        regular
+                        hamburger only not for anything else..
+                    </div>
+                    <div class="reviewer-accountbar">
+                        <a class="review-user" href="../user_pages/puga-chan.html">
+                            <img class="reviewer-icon" src="../images/photo-1517849845537-4d257902454a.webp">
+                            <div class="reviewer-user">Puga-chan</div>
+                        </a>
+                        <div class="vote-container">
+                            <div class="vote-amount-text">16</div>
+                            <div class="upvote" onclick="toggleUpvote(this)"></div>
+                            <div class="vote-amount-text">4</div>
+                            <div class="downvote" onclick="toggleDownvote(this)"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add a comment -->
+                    <div class="comments">
+                        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+                    </div>
+
+
+                </div> --}}
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+</html>

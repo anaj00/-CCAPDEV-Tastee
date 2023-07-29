@@ -1,0 +1,71 @@
+<div class="review-item">
+    <div class="res-header">
+        <div class="review-restaurant-title"> {{rating_given}}/5 {{title}} </div>
+        <div class="edit-button" onclick="launchEdit()">edit</div>
+    </div>
+    <div class="review-text">
+        {{content}}
+    </div>
+    <div class="reviewer-accountbar">
+        <a class="review-user" href="http://localhost:3000/user/{{user.username}}">
+            <img class="reviewer-icon" src="../static/images/{{user.pfp}}">
+            <div class="reviewer-user">{{user.username}}</div>
+        </a>
+        <div class="vote-container">
+            <div class="vote-amount-text">{{upvote_count}}</div>
+            <div class="upvote" onclick="toggleUpvote(this)"></div>
+            <div class="vote-amount-text">{{downvote_count}}</div>
+            <div class="downvote" onclick="toggleDownvote(this)"></div>
+        </div>
+
+    </div>
+
+    <!-- comments section -->
+    <!-- comment 1 -->
+    {{#each comments}}
+    <div class="comments">
+        <div class="user-comment">
+            <a class="review-user" href="../user_pages/puga-chan.html">
+                <img class="reviewer-icon" src="../static/images/{{comments.user.pfp}}">
+                <div class="reviewer-user">{{comments.user}}</div>
+            </a>
+
+            <div class="user-comment-text">
+                {{comments.content}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+    <!-- Add a comment -->
+    <div class="comments">
+        <textarea class="add-comment" placeholder="Write a comment."></textarea>
+        <button>Send</button>
+    </div>
+</div>
+
+{{!-- TODO: Find a way for the placeholders of the form to have the corresponding information of the review --}}
+<div class="overlay" style="display: none;" id="overlay"></div>
+<div class="edit-container" style="display: none;" id="edit">
+    <div class="header">
+        <div class="exit" onclick="closeEdit()">X</div>
+        <button type="submit" class="delete-box-button" onclick="">Delete post</button>
+    </div>
+    <form action="http://localhost:3000/restaurant" class="review-box-content" method="POST">
+        <div class="review-box-title-div">
+            <textarea id="review-box-title" class="review-box-title" placeholder="Add a title"></textarea>
+            <div class="star-group">
+                <input type="radio" class="star" id="one" name="star_rating">
+                <input type="radio" class="star" id="two" name="star_rating">
+                <input type="radio" class="star" id="three" name="star_rating">
+                <input type="radio" class="star" id="four" name="star_rating">
+                <input type="radio" class="star" id="five" name="star_rating" checked>
+            </div>
+        </div>
+        <textarea id="review-box-review" class="review-box-review" placeholder="Write a review"></textarea>
+        <button type="submit" class="review-box-button" onclick="">Edit</button>
+    </form>
+
+
+
+</div>

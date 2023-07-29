@@ -1,0 +1,55 @@
+<link rel="stylesheet" type="text/css" media="all" href="../../static/css/user_page.css">
+<script src="../../static/js/userpage_script.js"></script>
+
+        <div class="content-body">
+            <div class="profile">
+                <div class="user-bio">
+                    <img class="display-picture"
+                        {{#if userCheck}}
+                        src="/static/images/{{userCheck.pfp}}"
+                        {{else}}
+                        src="../static/images/{{user.pfp}}"
+                        {{/if}}">
+                    <div class="display-name">
+                        {{#if userCheck}}
+                        {{userCheck.username}}
+                        {{else}}
+                        {{user.username}}
+                        {{/if}}
+                    </div>
+                    <div class="display-description">
+                        {{#if userCheck}}
+                        {{userCheck.bio}}
+                        {{else}}
+                        {{user.bio}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-and-comments-selector">
+                <span class="review-selector" onclick="toggleDivReviews()">Reviews&nbsp&nbsp</span>
+                |
+                <span class="comments-selector" onclick="toggleDivComments()"> &nbsp&nbspComments</span>
+            </div>
+
+            {{!-- Reviews --}}
+            <div class="reviews" id="user-reviews" style="display: grid;">
+
+                 {{#each reviews}}
+                 {{>userpage_review_cards}}
+                 {{/each}}
+                
+                
+            </div>
+
+
+
+            {{!-- Comments --}}
+            <div class="comments" id="user-comments" style="display: none;">
+
+                {{#each comments}}
+                {{>userpage_comment_card}}
+                {{/each}}
+
+            </div>

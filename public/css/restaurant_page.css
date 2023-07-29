@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* List all possible global properties in :root */
+:root {
+    font-size: 16px;
+    --primary-color-jade: #44af69;
+    --primary-color-white: white;
+    --primary-color-black: black;
+    --primary-color-gray: #e2e2e2;
+    --primary-color-gray-opacity: 7%;
+    --primary-color-darker-gray: #dfdfdf;
+    --border-rad: 7px;
+    --enlarge: scale(1.25);
+    --page-color: steelblue;
+    --star-primary-color: #44af69;
+    --star-secondary-color: #235c37;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="text"]{
+    border: none;
+    background-color: transparent;
+    outline: 0;
+    width: 400px;
+    height: 20px;
+  }
+  
+textarea {
+    border: none;
+    background-color: transparent;
+    outline: 0;
+    width: 95%;
+    resize: none;
+    border-radius: var(--border-rad);
+    }
+    
+input[type="submit"]{
+    border: none;
+    }
+
+
+
+.restaurant-container{
+    display: flex;
+    justify-content: center;
+    height: 550px;
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 60px;
+}
+
+.restaurant-picture {
+    /* border make this for the restaurant info */
+    /* border: 1px solid black; */
+    width: 100%;
+}
+
+
+.restaurant-information {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    position: absolute;
+    
+    top: 47%;
+    left: 70%;
+    padding: 50px;
+    width: 350px;
+
+    background-color: var(--primary-color-gray);
+    border: 1px solid black;
+    background-size: 100%;
+    padding: 20px;
+
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+    align-items: left;
+}
+
+.res-header{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.res-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.review-restaurant-title{
+    font-weight: bold;
+    font-size: 25px;
+    /* border: 1px solid black; */
+}
+
+.edit-button{
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.rating-container{
+    display:flex;
+    flex-flow: row;
+
+}
+
+.star-box {
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+    padding-right: 5px;
+}
+
+
+.res-number{
+    margin-top: auto;
+
+}
+
+.review-comment-box{
+    justify-content: right;
+    padding: 20px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: auto;
+    height: 260px;
+    margin-left: 500px;
+    margin-right: 500px;
+    border-radius: var(--border-rad);
+    background-color: var(--primary-color-gray);
+    border: 1px solid black;
+}
+
+
+.review-box-content {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    color: var(--primary-color-black);
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    border-radius: var(--border-rad);
+}
+
+.review-box-title{
+    padding: 5px;
+    padding-bottom: 0;
+    width: 99%;
+    height: 25px;
+    border-radius: 0;
+    border: 1px solid black;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.review-box-review {
+    margin-top: 0;
+    padding: 5px;
+    width: 99%;
+    height: 65%;
+    border-radius: 0;
+    border: 1px solid black;
+}
+
+.review-box-button {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    /* border */
+    border-radius: var(--border-rad);
+    background-color: var(--primary-color-jade);
+    width: auto;
+    height: 28px;
+
+    /* text */
+    color: var(--primary-color-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.delete-box-button {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    /* border */
+    border-radius: var(--border-rad);
+    background-color: #91242a;
+    width: auto;
+    height: 28px;
+
+    /* text */
+    color: var(--primary-color-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.delete-box-button:hover {
+    background-color: var(--primary-color-black);
+    color: var(--primary-color-white);
+}
+
+.review-box-button:hover {
+    color: var(--primary-color-white);
+    background-color: var(--primary-color-black);
+}
+
+.reviews {
+    background-color: white;
+    margin-top: 50px;
+    display: flex;
+    align-self: center;
+    width: 95%;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    flex-direction: column;
+    align-items: flex-start;
+    /* border: 1px solid black; */
+}
+
+.review-title {
+    color: #44af69;
+    font-weight: bold;
+    font-size: 0.70cm;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    /* border: 1px solid black; */
+}
+
+.review-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-items: center;
+    align-items: flex-start;
+    /* flex-wrap: wrap; */
+    margin-top: 1%;
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    /* column-gap: 80px;
+    row-gap: 10px;
+    overflow: auto; */
+}
+
+
+.review-item {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(30, 30, 30, 0.07);
+    margin-bottom: 10px;
+    padding: 7%;
+    width: 75%;
+    border: 1px solid black;
+    border-radius: var(--border-rad);
+    
+}
+
+.reviewer-accountbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10%;
+}
+
+.review-text {
+    /* border: 1px solid black; */
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.review-user {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: var(--primary-color-black);
+}
+
+.reviewer-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: #FAFAFA;
+    vertical-align: baseline;
+    border: 1px solid #EFEFEF;
+}
+
+.reviewer-user {
+    margin: 5px;
+    font-weight: bold;
+    margin-top: 6px;
+    text-decoration: none;
+    color: var(--primary-color-black);
+}
+
+
+.vote-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.vote-amount-text {
+    font-weight: light;
+    font-size: smaller;
+    margin-left: 5px;
+    margin-right: 2px;
+}
+
+.upvote {
+    background: url("../images/Upvote.png") no-repeat 0 0;
+    filter: grayscale(100);
+    margin-right: 2%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-size: 90%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.downvote {
+    background: url("../images/Downvote.png") no-repeat 0 0;
+    filter: grayscale(100);
+    margin-top: 5px;
+    margin-bottom: 3px;
+    background-size: 90%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.comments {
+    border: 1px solid black;
+    border-radius: var(--border-rad);
+    background-color: var(--primary-color-darker-gray);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 5px;
+    margin-top: 5px;
+    margin-left: 33px;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.user-comment {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-comment-text {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 43px;
+}
+
+.add-comment {
+    display: flex;
+    height: 60px;
+}
+
+.star-group {
+    display: grid;
+    grid-auto-flow: column;
+    /* border: 1px solid black; */
+    margin-right: -3px;
+}
+
+/* reset native input styles */
+.star {
+    -webkit-appearance: none;
+    align-items: center;
+    appearance: none;
+    cursor: pointer;
+    display: grid;
+    font: inherit;
+    height: 25px;
+    justify-items: center;
+    margin: 0;
+    place-content: center;
+    position: relative;
+    width: 1.15em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .star {
+        transition: all 0.25s;
+    }
+
+    .star:before,
+    .star:after {
+        transition: all 0.25s;
+    }
+}
+
+
+.star:before,
+.star:after {
+    color: var(--star-primary-color);
+    position: absolute;
+}
+
+.star:before {
+    content: "☆";
+}
+
+.star:after {
+    content: "✦";
+    font-size: 25%;
+    opacity: 0;
+    right: 20%;
+    top: 20%;
+}
+
+/* The checked radio button and each radio button preceding */
+.star:checked:before,
+.star:has(~ .star:checked):before {
+    content: "★";
+}
+
+#two:checked:after,
+.star:has(~ #two:checked):after {
+    opacity: 1;
+    right: 14%;
+    top: 10%;
+}
+
+#three:checked:before,
+.star:has(~ #three:checked):before {
+    transform: var(--enlarge);
+}
+
+#three:checked:after,
+.star:has(~ #three:checked):after {
+    opacity: 1;
+    right: 8%;
+    top: 2%;
+    transform: var(--enlarge);
+}
+
+#four:checked:before,
+.star:has(~ #four:checked):before {
+    text-shadow: 0.05em 0.033em 0px var(--star-secondary-color);
+    transform: var(--enlarge);
+}
+
+#four:checked:after,
+.star:has(~ #four:checked):after {
+    opacity: 1;
+    right: 8%;
+    top: 2%;
+    transform: var(--enlarge);
+}
+
+#five:checked:before,
+.star:has(~ #five:checked):before {
+    text-shadow: 0.05em 0.033em 0px var(--star-secondary-color);
+    transform: var(--enlarge);
+}
+
+#five:checked:after,
+.star:has(~ #five:checked):after {
+    opacity: 1;
+    right: 8%;
+    text-shadow: 0.14em 0.075em 0px var(--star-secondary-color);
+    top: 2%;
+    transform: var(--enlarge);
+}
+
+.star:focus {
+    outline: none;
+}
+
+.star:focus-visible {
+    border-radius: 8px;
+    outline: 2px dashed var(--star-primary-color);
+    outline-offset: 8px;
+    transition: all 0s;
+}
+
+.review-box-title-div {
+    display: flex;
+    margin-bottom: 5px;
+    /* border: 1px solid black; */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent black color */
+    z-index: 3;
+    /* Set a lower z-index than the target-div */
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: var(--primary-color-white);
+    border-radius: var(--border-rad);
+    z-index: 9999;
+}
+
+.exit {
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

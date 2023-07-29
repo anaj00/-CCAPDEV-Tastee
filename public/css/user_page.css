@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    font-size: 16px;
+    --primary-color-jade: #44af69; /*nab-bar*/
+    --primary-color-white: white;
+    --primary-color-black: black;
+    --primary-color-gray-opacity: 7%; /*overlay*/
+    --primary-color-gray: #E2E2E2;
+    --border-rad: 7px
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+
+    background-color: var(--primary-color-jade);
+
+    /* border */
+    top: 0;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: -3px;
+}
+
+.navbar-logo {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: bolder;
+    font-size: 52px;
+    text-decoration: none;
+    color: var(--primary-color-white);
+
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.navbar-logo:hover{
+    color: var(--primary-color-black);
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    /* border */
+    border-radius: var(--border-rad);
+    background-color: var(--primary-color-black);
+    width: auto;
+    height: 28px;
+    margin-right: 30px;
+    
+
+    /* text */
+    color: var(--primary-color-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.login:hover {
+    color: var(--primary-color-black);
+    background-color: var(--primary-color-white);
+}
+
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 0.25%;
+    width: 300px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu {
+    max-height: 650px;
+}
+
+.sub-menu{
+    background: var(--primary-color-gray);
+    padding: 20px;
+    margin: 10px;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+}
+
+.user-info h2{
+    font-weight: 500;
+}
+
+.user-info img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px;
+}
+
+.sub-menu-link p{
+    width: 100%;
+}
+
+.sub-menu-link span{
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p{
+    font-weight: 600;
+}
+
+.search-bar {
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    /* border: 1px solid black; */
+    height: 28px;
+    align-items: center;
+
+    background-color: var(--primary-color-white);
+    width: 25%;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: auto;
+}
+
+.search-icon {
+    /* border: 1px solid black; */
+    background: url("../images/searchicon.png") no-repeat 0 0;
+    background-size: 70%;
+    width: 27px;
+    height: 27px;
+    margin-top: 6px;
+}
+
+input[type="text"],
+textarea {
+    border: none;
+    background-color: none;
+    outline: 0;
+    width: 400px;
+    height: 20px;
+}
+
+
+.content-body {}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.display-picture {
+    width: 185px;
+    /* Adjust the width and height as needed */
+    height: 185px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    object-fit: cover;
+}
+
+
+.user-bio {
+    border-radius: var(--border-rad);
+    background-color: #E2E2E2;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 4%;
+    padding-left: 4%;
+    width: fit-content;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.display-name {
+    align-content: center;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.display-description {
+    font-weight: 300;
+    font-size: 22px;
+}
+
+.reviews-and-comments-selector {
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin: auto;
+    margin-top: 0;
+    margin-bottom: 20px;
+    /* border: 1px solid purple; */
+    text-align: center;
+    position: relative;
+    width: fit-content;
+}
+
+
+.review-selector {
+    color: #44af69;
+    cursor: pointer;
+}
+
+.comments-selector {
+    color: #CFCFCF;
+    cursor: pointer;
+}
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    justify-items: center;
+    align-items: flex-start;
+    min-height: 900px;
+    max-height: 900px;
+    margin: 5%;
+    margin-top: 2%;
+    width: 90%;
+    /* border: 1px solid black; */
+}
+
+.comments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    justify-items: center;
+    align-items: flex-start;
+    min-height: 900px;
+    max-height: 900px;
+    margin: 5%;
+    margin-top: 2%;
+    width: 90%;
+    /* border: 1px solid black; */
+}
+
+.post {
+    max-width: 300px;
+    min-width: 300px;
+
+    padding: 25px;
+    background-color: #E2E2E2;
+    /* border: 1px dotted black; */
+    border-radius: var(--border-rad);
+}
+
+.post-header {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.post-header-post-shape {
+    background-color: #FA0000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-header-posted-on {
+    font-weight: 350;
+    font-style: italic;
+    margin-right: 7px;
+}
+
+.post-header-restaurant {
+    margin-right: 7px;
+    font-weight: 450;
+    text-decoration: none;
+    color: var(--primary-color-black);
+}
+
+.post-body {
+    display: flex;
+    flex-flow: row;
+}

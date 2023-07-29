@@ -1,0 +1,29 @@
+    <main>
+        <div class="container-content">
+            <div class="search-container">
+                <div class="search-header">Don't know what to eat?</div>
+                <div class="search-body">Browse through different restaurants and check reviews</div>
+            </div>
+            <div class="content-img"></div>
+        </div>
+
+        <!-- Any cravings? -->
+        <div class="container-blocks">
+            <div class="container-text-header">
+                <div class="text-top-restaurants">Top</div>
+                <div class="text-top-restaurants green">Restaurants</div>
+            </div>
+
+            <div class="container-restaurant-cards">
+
+                {{#each restaurants}}
+                    {{>restaurant_card}}
+                {{/each}}
+
+            </div>
+
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tastee {{title}}</title>
+
+    {{#if restaurant}}
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css">
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.png">
+    {{else}}
+    <link rel="stylesheet" type="text/css" media="all" href="static/css/index.css">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.png">
+    {{/if}}
+
+</head>
+<body>
+    {{>navbar}}
+    {{{body}}}
+    {{!-- {{>footer}} --}}
+</body>
+</html>

@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+
+
+/* List all possible global properties in :root */
+:root {
+    font-size: 16px;
+    --primary-color-jade: #44af69;
+    --primary-color-white: white;
+    --primary-color-black: black;
+    --primary-color-gray: #e2e2e2;
+    --primary-color-gray-opacity: 7%;
+    --border-rad: 7px
+}
+
+body {
+    background-color: var(--primary-color-jade);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: var(--primary-color-jade);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-flow:row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /* border: 1px solid black; */
+}
+
+.navbar-logo {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: bolder;
+    font-size: 52px;
+    /* border: 1px solid black; */
+    color: var(--primary-color-white);
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.navbar-logo:hover{
+    color: var(--primary-color-black);
+}
+
+.navbar .login {
+    display: flex;
+
+    padding: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    align-items: center;
+    /* border */
+    border-radius: var(--border-rad);
+    background-color: var(--primary-color-black);
+    width: auto;
+    height: 28px;
+    margin-right: 30px;
+    /* text */
+    color: var(--primary-color-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.navbar .login:hover {
+    color: var(--primary-color-black);
+    background-color: var(--primary-color-white);
+}
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 440px;
+    background: var(--primary-color-gray);
+    border: 2px solid var(--primary-color-gray);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 4px var(--primary-color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: height .2s ease;
+}
+
+.wrapper .login-form {
+    width: 100%;
+    padding: 40px;
+}
+
+.login-form h2 {
+    font-size: 2em;
+    color: var(--primary-color-black);
+    text-align: center;
+    cursor: default;
+}
+
+.signup-form h2 {
+    font-size: 2em;
+    color: var(--primary-color-black);
+    text-align: center;
+    cursor: default;
+}
+
+.email-password_input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid var(--primary-color-black);
+    margin: 30px 0;
+}
+
+.email-password_input label {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: var(--primary-color-jade);
+    font-weight: 300;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.email-password_input input:focus~label,
+.email-password_input input:valid~label {
+    top: -5px;
+}
+
+.email-password_input input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: var(--primary-color-black);
+    font-weight: 400;
+    padding: 0 35px 0 5px;
+}
+
+.email-password_input .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: var(--primary-color-jade);
+    line-height: 55px;
+}
+
+.loginbtn {
+    width: 100%;
+    height: 50px;
+    font-size: 1em;
+    color: var(--primary-color-white);
+    font-weight: 700;
+    background: var(--primary-color-jade);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.rememberMe {
+    font-size: .9em;
+    color: var(--primary-color-jade);
+    font-weight: 500;
+    margin: -15px 2 15px;
+    display: flex;
+    justify-content: left;
+}
+
+.forgotPassword {
+    font-size: .9em;
+    color: var(--primary-color-jade);
+    font-weight: 500;
+    margin: -15px 2 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.terms {
+    font-size: .9em;
+    color: var(--primary-color-jade);
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.forgotPassword a {
+    color: var(--primary-color-jade);
+    text-decoration: none;
+}
+
+.forgotPassword a:hover {
+    text-decoration: underline;
+}
+
+.signup {
+    font-size: .9em;
+    text-align: center;
+    color: var(--primary-color-jade);
+    font-weight: 400;
+    margin: 25px 1 10px;
+}
+
+.signup p a {
+    color: var(--primary-color-jade);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.signup p a:hover{
+    text-decoration: underline;
+}
+
+.wrapper .login-form {
+    transition: transform .2s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .login-form {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .signup-form {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .signup-form {
+    transition: transform .2s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active {
+    height: 520px;
+}

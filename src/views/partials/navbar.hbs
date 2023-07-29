@@ -1,0 +1,84 @@
+<link rel="stylesheet" type="text/css" media="all" href="static/css/index.css">
+<script src="static/js/index_script.js"></script>
+
+<nav>
+    <div class="navbar">
+        <a class="navbar-logo" href="http://localhost:3000">tastee</a>
+        {{#if value}}
+        {{!-- <div class="search-bar-nav">
+            <form id="search-form">
+                <input class="search" type="text" id="search-input" placeholder="Search">
+            </form>
+            <button class="search-icon-nav" id="search-button"></button>
+        </div> --}}
+        <div id="userIntro" class="login" onclick="toggleMenu()">Hello, {{user.username}}</div>
+        {{else}}
+        <div id="userIntro" class="login" onclick="toggleMenu()">Sign in</div>
+        {{/if}}
+
+        
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="../static/images/{{user.pfp}}" class="user-pic" id="user-pic-id">
+                    <h2 id="user-menu-intro">{{user.username}}</h2>
+                </div>
+                <hr>
+
+                <a id="user-page-link" href="http://localhost:3000/user" class="sub-menu-link">
+                    <p>Your Page</p>
+                    <span>></span>
+                </a>
+
+                <a id="user-page-link" class="sub-menu-link" onclick="toggleEditProfile()">
+                    <p>Edit profile</p>
+                    <span>></span>
+                </a>
+                <hr>
+
+                <a href="http://localhost:3000/sign_in" class="sub-menu-link">
+                    <p>Sign In / Sign Up</p>
+                    <span>></span>
+                </a>
+
+                <a class="sub-menu-link" onclick="switchUserNone()">
+                    <p>Log out</p>
+                    <span>></span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="overlay" style="display: none;" id="overlay"></div>
+<div class="edit-profile" style="display: none;" id="edit-profile">
+    <div class="exit" onclick="closeEdit()">X</div>
+    <div class="edit-image">
+        <img src="static/images/photo-1517849845537-4d257902454a.webp" class="edit-image-circle" id="user-pic-id"></img>
+        <div class="edit-image-text">Edit profile picture</div>
+    </div>
+    <div class="edit-right">
+        <form action="localhost:3000">
+            <div class="edit-input">
+                <label>Username</label><br>
+                <input type="text" id="edit-username">
+            </div>
+            <div class="edit-input">
+                <label>Bio</label><br>
+                <input type="text" id="edit-bio">
+            </div>
+            <div class="edit-input">
+                <label>Email</label><br>
+                <input type="email" id="edit-email">
+            </div>
+            <div class="edit-input">
+                <label>Password</label><br>
+                <input type="password" id="edit-password">
+            </div>
+            <button type="submit" class="btn">Edit profile</button>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "64be25412d305accec29dbe1"
+  },
+  "restaurant_id": 1,
+  "name": "Mcdonalds",
+  "address": "123 Vito Cruz",
+  "average_rating": 2,
+  "banner": "mcdo.png",
+  "icon": "mcdo_static.webp",
+  "contact": 1234567
+},
+{
+  "_id": {
+    "$oid": "64be25dc2d305accec29dbe2"
+  },
+  "restaurant_id": 2,
+  "name": "Jollibee",
+  "address": "8700 BF Homes",
+  "contact": 1231234,
+  "average_rating": 4,
+  "banner": "jollibee_header.jpg",
+  "icon": "jabee_static.webp"
+},
+{
+  "_id": {
+    "$oid": "64be26562d305accec29dbe3"
+  },
+  "restaurant_id": 3,
+  "name": "Tokyo Tokyo",
+  "address": "83 Estrada",
+  "contact": 2849322,
+  "average_rating": 5,
+  "banner": "tokyotokyo_header.jpg",
+  "icon": "tokyotokyo_static.webp"
+},
+{
+  "_id": {
+    "$oid": "64be26e72d305accec29dbe4"
+  },
+  "restaurant_id": 4,
+  "name": "Kenny Rogers",
+  "address": "304 Gov A Santos",
+  "contact": 1231234,
+  "average_rating": 2,
+  "banner": "kennyrogers_header.jpg",
+  "icon": "kennyrogers_static.webp"
+},
+{
+  "_id": {
+    "$oid": "64be27292d305accec29dbe5"
+  },
+  "restaurant_id": 5,
+  "name": "Mang Inasal",
+  "address": "234 Gov A Santos",
+  "contact": 1231234,
+  "average_rating": 3,
+  "banner": "manginasal_header.jpg",
+  "icon": "manginasal_static.webp"
+}]

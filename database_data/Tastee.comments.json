@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "64bcfe876689f4fdf81a12aa"
+  },
+  "comment_id": 1,
+  "user": "Oinkie",
+  "restaurant_id": 3,
+  "content": "Nyom, nyom nyom",
+  "date_posted": "12/12/12",
+  "upvote_count": 2,
+  "downvote_count": 2,
+  "user_replied": "Nootie"
+}]
