@@ -3,8 +3,9 @@ import { dirname } from "path";
 import { fileURLToPath } from 'url';
 import express from 'express';
 import exphbs from 'express-handlebars';
-import restaurantsOP from "./../../models/restaurants.js" 
-import reviewsModel from "./../../models/reviews.js";
+import restaurantsOP from "./../../models/restaurants.js" ;
+import reviewsOP from "./../../models/reviews.js";
+import usersOP from "./../../models/user.js";
 
 import {
   initializeDbContents,
@@ -20,18 +21,20 @@ const router = express.Router();
 router.get("/:restaurant_id", async (req, res, next) => {
     const userArr = req.app.locals.user;
     const user = userArr[0];
+
+    // Retrieves restaurants
     const restaurantId = req.params.restaurant_id;
-    console.log(restaurantId);
-    // console.log("------------------------", restaurantId);
     const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
     const restaurant = result[0];
-    // console.log("------------------------", restaurantId.restaurant_id);
 
+    // Retrieves reviews of the restaurant
+    let reviews = await reviewsOP.find({restaurant_id: restaurantId}).lean();
+    for (const i in reviews){ // Searches the user via username in restaurants, and inserts it in
+        let user = await usersOP.find({username: reviews[i].username}).lean();
+        reviews[i].user = user[0];
+    }
 
-    const reviews = await reviewsModel.find({"restaurant.restaurant_id": restaurant.restaurant_id}).lean();
-    // console.log("------------------------1", reviews);
     if (!restaurant) {
-        // Handle case when the restaurant with the given ID is not found
         return res.status(404).send("Restaurant not found");
     }
 
@@ -47,22 +50,17 @@ router.get("/:restaurant_id", async (req, res, next) => {
 })
 
 router.post("/:restaurant_id", async (req, res, next) => {
-    // console.log(req.body);
     const restaurantId = req.params.restaurant_id;
     const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
     const restaurant = result[0];
-    // console.log("Restaurant: ", restaurant);
 
     const title = req.body.title;
     const rating_given = req.body.star_rating;
     const content = req.body.content; 
-    // console.log("Title: ", title);
-    // console.log("Rating: ", rating_given);
-    // console.log("Content: ", content);
 
     const userArr = req.app.locals.user;
     const user = userArr[0];
-    // console.log(user);
+
     insertNewReview(user, restaurant, title, content, rating_given);
     res.redirect("/restaurant/" + restaurantId);
 });

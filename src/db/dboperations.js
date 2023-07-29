@@ -52,34 +52,33 @@ export async function insertNewUser(username, pw){
     })
 }
 
-export async function insertNewReview(username, restaurant, title, content, rating){
+export async function insertNewReview(user, restaurant, title, content, rating){
     const highestReviewId =  await reviewsOP.findOne().sort("-review_id");
     const id = highestReviewId ? highestReviewId.review_id + 1 : 1;
-    console.log(restaurant);
+
     await reviewsOP.create({
         review_id: id,
-        username: username.username,
+        username: user.username,
         restaurant_id: restaurant.restaurant_id,
         title: title,
         content: content,
         rating_given: rating
     })
     .then( () => {
-        console.log("Insert review successful: " + username);
+        console.log("Insert review successful: " + user);
     })
     .catch( (err) =>{
         console.log(err);
     })
 }
 
-// DONE: Remodify insert
 export async function insertNewComment(restaurant, username, replied_to, content){
     const userObj = await userOP.where('username').equals(username).exec();
     const user_repliedObj = userOP.where('username').equals(replied_to).exec();
 
     const highestId =  await commentsOP.findOne().sort('-comment_id');
     const id = highestId ? highestId.comment_id + 1 : 1;
-    // console.log(id);
+
     const restaurantObj = await queryRestaurantDb.where('name').equals(restaurant).exec();
     await commentsOP.create({
         username: userObj[0].username,

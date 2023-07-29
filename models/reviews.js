@@ -8,13 +8,11 @@ const reviewSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        ref: 'users',
         required: true,
         trim: true
     },
     restaurant_id: {
         type: Number,
-        ref: 'restaurants',
         required: true,
         trim: true,
     },
