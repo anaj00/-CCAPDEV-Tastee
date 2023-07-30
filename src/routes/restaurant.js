@@ -49,20 +49,38 @@ router.get("/:restaurant_id", async (req, res, next) => {
     );
 })
 
-router.post("/:restaurant_id", async (req, res, next) => {
+router.post("/:restaurant_id", async (req, res) => {
+    // Gets restaurant obj
     const restaurantId = req.params.restaurant_id;
     const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
     const restaurant = result[0];
 
-    const title = req.body.title;
-    const rating_given = req.body.star_rating;
-    const content = req.body.content; 
-
+    // Gets highest restaurant number
+    const highestReviewId =  await reviewsOP.findOne().sort("-review_id");
+    const id = highestReviewId ? highestReviewId.review_id + 1 : 1;
+    
+    // Gets user
     const userArr = req.app.locals.user;
     const user = userArr[0];
 
-    insertNewReview(user, restaurant, title, content, rating_given);
-    res.redirect("/restaurant/" + restaurantId);
+    await reviewsOP.create({
+        review_id: id,
+        username: user.username,
+        title: req.body.title,
+        rating_given: req.body.star_rating,
+        content: req.body.content,
+        user: user.username,
+        restaurant_id: restaurantId
+    })
+    .then( () => {
+        console.log("Insert review successful: " + user);
+        res.redirect("/restaurant/" + restaurantId);
+    })
+    .catch( (err) =>{
+        console.log(err);
+        res.sendStatus(400);
+    })
+
 });
 
 // Export

@@ -1,3 +1,60 @@
+const fullURL = window.location.href;
+const urlSegments = fullURL.split('/');
+const restaurant_id = urlSegments[urlSegments.length - 1];
+
+document.addEventListener('DOMContentLoaded', function() {
+
+        // Review form
+        const reviewForm = document.getElementById('reviewForm');
+        const reviewError = document.getElementById("review-error");
+        reviewForm.addEventListener('submit', async function(event) {
+                const reviewFormObj = document.forms.reviewForm;
+                event.preventDefault();
+                const reviewFormData = new FormData(reviewFormObj);
+                const data = {};
+                for (const entry of reviewFormData.entries()){
+                        data[entry[0]] = entry[1];
+                }
+
+                const json = JSON.stringify(data);
+                console.log(json);
+                const response = await fetch ("/restaurant/" + restaurant_id, {
+                        method: "POST",
+                        body: json,
+                        headers: {
+                                "Content-Type": "application/json"
+                        }
+                });
+
+                if (response.status == 200){
+                        location.reload();
+                } else {
+                        reviewError.innerText = "Check if all the fields are complete."
+                }
+        });
+
+        // TODO: Fix comments as it:
+        // a: wont work,
+        // b: if it does, only works on one instance
+        const commentForm = document.getElementById("commentForm");
+        commentForm.addEventListener('submit', async function(event){
+                event.preventDefault();
+                const commentFormObj = document.forms.commentForm;
+                const commentFormData = new FormData(commentFormObj);
+                const data = {}
+                for (const entry of commentFormData.entries()){
+                        data[entry[0]] = entry[1];
+                }
+
+                const json = JSON.stringify(data);
+                console.log(json);
+        })
+});
+
+function postComment(this){
+        
+}
+
 function toggleMenu() {
         var subMenu = document.getElementById("subMenu");
         subMenu.classList.toggle("open-menu");
@@ -15,9 +72,9 @@ function switchUserNone(){
     }
 
 function toggleUpvote(item) {
-        //get css of upvote item
+        // get css of upvote item
         var upVoteStyle = window.getComputedStyle(item); 
-        //get downvote item within the same div and its css
+        // get downvote item within the same div and its css
         var downVoteItem = item.parentElement.querySelector(".downvote"); 
         var downVoteStyle = window.getComputedStyle(downVoteItem);
 
@@ -33,7 +90,7 @@ function toggleUpvote(item) {
         }
 }
 
-//reverse process of toggleUpVote();
+// reverse process of toggleUpVote();
 function toggleDownvote(item) {
         var downVoteStyle = window.getComputedStyle(item);
 
@@ -69,3 +126,5 @@ function launchEdit(){
         divEditProfile.style.display = "flex";
     }
 }
+
+

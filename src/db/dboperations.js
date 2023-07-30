@@ -6,6 +6,7 @@ import  userOP  from "../../models/user.js";
 import  restaurantOP  from "../../models/restaurants.js";
 import  reviewsOP  from "../../models/reviews.js";
 import  commentsOP  from "../../models/comments.js";
+import { response } from "express";
 
 
 //mongoose fetch operation constants
@@ -52,7 +53,7 @@ export async function insertNewUser(username, pw){
     })
 }
 
-export async function insertNewReview(user, restaurant, title, content, rating){
+export async function insertNewReview(user, restaurant, title, content, rating,){
     const highestReviewId =  await reviewsOP.findOne().sort("-review_id");
     const id = highestReviewId ? highestReviewId.review_id + 1 : 1;
 
@@ -90,8 +91,7 @@ export async function insertNewComment(restaurant, username, replied_to, content
     .then(() => {
         console.log("Insert comment successful: " + id);
     })
-    .catch( (err) =>{
-        console.log(err);
+    .catch((err) =>{
     })
 }
 

@@ -22,6 +22,7 @@
 
     <!-- comments section -->
     <!-- comment 1 -->
+    {{!-- TODO: Uncomment when going to fix --}}
     {{#each comments}}
     <div class="comments">
         <div class="user-comment">
@@ -39,9 +40,14 @@
 
     <!-- Add a comment -->
     <div class="comments">
-        <textarea class="add-comment" placeholder="Write a comment."></textarea>
-        <button>Send</button>
+        <form id ="commentForm" class="comment-button-container">
+            <textarea class="add-comment" id="add-comment" placeholder="Write a comment."></textarea>
+            <div class="comment-button-button-container" id="comment-button-button-container">
+                <input type="submit" class="comment-box-button" id="comment-submit" value="Post"></input>
+            </div>
+        </form>
     </div>
+
 </div>
 
 {{!-- TODO: Find a way for the placeholders of the form to have the corresponding information of the review --}}

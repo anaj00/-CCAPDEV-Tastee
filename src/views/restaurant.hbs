@@ -23,23 +23,26 @@
 
 
         <div class="review-comment-box">
-                <form action="http://localhost:3000/restaurant/{{restaurant.restaurant_id}}" class="review-box-content" method="POST">
+                <form class="review-box-content" id="reviewForm">
                     <div class="review-box-title-div">
                     <textarea id="review-box-title" class="review-box-title" placeholder="Add a title" name="title"></textarea>
                         <div class="star-group">
-                            <input type="radio" class="star" id="one" name="star_rating" value = 1>
+                            <input type="radio" class="star" id="one" name="star_rating" checked value = 1>
                             <input type="radio" class="star" id="two" name="star_rating" value = 2>
                             <input type="radio" class="star" id="three" name="star_rating" value = 3>
                             <input type="radio" class="star" id="four" name="star_rating" value = 4>
-                            <input type="radio" class="star" id="five" name="star_rating" checked value = 5>
+                            <input type="radio" class="star" id="five" name="star_rating" value = 5>
                         </div>
                     </div>
                     <textarea id="review-box-review" class="review-box-review" placeholder="Write a review" name="content"></textarea>
-                    <button type="submit" class="review-box-button" onclick="">Post</button>
+                    <div class="review-button-container">
+                        <div class="review-error" id="review-error"></div>
+                        <input type="submit" class="review-box-button" id="review-submit" value="Post"></input>
+                    </div>
                 </form>
             </div>
-
         </div>
+
         <div class="reviews">
             <div class="review-title">Reviews</div>
             <div class="review-container">
@@ -48,6 +51,7 @@
                 {{#each reviews}}
                 {{>review}}
                 {{/each}}
+
                 <!-- review 1 -->
                 {{!-- <div class="review-item">
                     <div class="review-text">
