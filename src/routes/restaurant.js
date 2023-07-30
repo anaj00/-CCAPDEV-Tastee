@@ -83,6 +83,14 @@ router.post("/:restaurant_id", async (req, res) => {
 
 });
 
+router.get("/:restaurant_id/:review_id", async (req, res) => {
+    const review_id = req.params.review_id;
+    const reviewObj = await reviewsOP.find({review_id: review_id}).lean();
+    const review = reviewObj[0];
+    // console.log(review);
+    res.json(review);
+})
+
 // Export
 export default router;
 

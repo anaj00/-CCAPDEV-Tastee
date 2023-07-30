@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     },
     pfp: {
         type: String,
-        default: './public/images/puga.jpeg',
+        default: 'puga.jpeg',
     },
     bio: {
         type: String,
