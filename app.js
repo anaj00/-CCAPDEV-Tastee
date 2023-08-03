@@ -35,7 +35,20 @@ async function main () {
     app.use("/static", express.static(__dirname + "/public"));
 
     app.engine("hbs", exphbs.engine({
-        extname: 'hbs'
+        extname: 'hbs',
+        helpers: {
+            formatDate: function(dateString, format) {
+                const date = new Date(dateString);
+                const day = date.getDate().toString().padStart(2, '0');
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const year = date.getFullYear().toString();
+                const hours = date.getHours().toString().padStart(2, '0');
+                const minutes = date.getMinutes().toString().padStart(2, '0');
+
+                return `${day}/${month}/${year} ${hours}:${minutes}`;
+            }
+
+        }
     }));
     app.set("view engine", "hbs");
 

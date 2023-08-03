@@ -14,10 +14,11 @@ import {
   insertNewComment,
   insertNewRestaurant,
 } from "../../src/db/dboperations.js"
+import commentsOP from "../../models/comments.js";
 
 const router = express.Router();
 
-
+// TODO: Find a way to retrieve all comments of each review
 router.get("/:restaurant_id", async (req, res, next) => {
     const userArr = req.app.locals.user;
     const user = userArr[0];
@@ -83,6 +84,39 @@ router.post("/:restaurant_id", async (req, res) => {
 
 });
 
+router.post("/:restaurant_id/:review_id/comment", async (req, res) => {
+    const review_id = req.params.review_id;
+    const restaurant_id = req.params.restaurant_id;
+    const result = await reviewsOP.find({review_id: review_id}).lean();
+    const review = result[0];
+
+    const highestCommentId =  await commentsOP.findOne().sort("-comment_id");
+    const id = highestCommentId ? highestCommentId.review_id + 1 : 1;
+    
+    // Gets user
+    const userArr = req.app.locals.user;
+    const user = userArr[0];
+
+    console.log(req.body);
+    await commentsOP.create({
+        comment_id: id,
+        username: user.username,
+        username_replied: review.username,
+        review_id: review_id,
+        restaurant_id: restaurant_id,
+        content: req.body.content,
+    })
+    .then( () => {
+        console.log("Insert comment successful: " + user);
+        res.sendStatus(200);
+    })
+    .catch( (err) =>{
+        console.log(err);
+        res.sendStatus(400);
+    })
+
+});
+
 router.get("/:restaurant_id/:review_id", async (req, res) => {
     const review_id = req.params.review_id;
     const reviewObj = await reviewsOP.find({review_id: review_id}).lean();
@@ -90,6 +124,78 @@ router.get("/:restaurant_id/:review_id", async (req, res) => {
     // console.log(review);
     res.json(review);
 })
+
+router.patch("/:restaurant_id/:review_id/edit", async (req,res) => {
+    try{
+        const review_id = req.params.review_id;
+        const updatedData = req.body;
+        const filter = {review_id: review_id};
+        const updatedOperation = {$set: updatedData}
+
+        const result = await reviewsOP.updateOne(filter, updatedOperation);
+        if (result.modifiedCount === 1) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(404);
+        }
+
+    } catch (error) {
+        console.error('Error updating document:', error);
+        res.sendStatus(500);
+    }
+});
+
+router.patch("/:restaurant_id/:review_id/upvote", async (req,res) => {
+    try{
+        const review_id = req.params.review_id;
+        const filter = {review_id: review_id};
+        const updatedOperation = {$inc: {upvote_count: 1}}
+
+        const result = await reviewsOP.updateOne(filter, updatedOperation);
+        if (result.modifiedCount === 1) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(404);
+        }
+
+    } catch (error) {
+        console.error('Error updating document:', error);
+        res.sendStatus(500);
+    }
+});
+
+router.patch("/:restaurant_id/:review_id/downvote", async (req,res) => {
+    try{
+        const review_id = req.params.review_id;
+        const filter = {review_id: review_id};
+        const updatedOperation = {$inc: {downvote_count: 1}}
+
+        const result = await reviewsOP.updateOne(filter, updatedOperation);
+        if (result.modifiedCount === 1) {
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(404);
+        }
+
+    } catch (error) {
+        console.error('Error updating document:', error);
+        res.sendStatus(500);
+    }
+});
+
+router.delete("/:restaurant_id/:review_id/delete", async (req,res) => {
+    const review_id = req.params.review_id;
+    console.log(review_id);
+    const filter = {review_id: review_id}
+    const result = await reviewsOP.deleteOne(filter);
+    if (result.deletedCount === 1) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(404);
+    }
+});
+
+
 
 // Export
 export default router;

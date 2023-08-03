@@ -44,6 +44,11 @@ const reviewSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    isEdited: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 })
 
 const reviewsOP = mongoose.model('Review', reviewSchema);

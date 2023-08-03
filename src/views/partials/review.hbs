@@ -1,8 +1,19 @@
 <div class="review-item">
+     <div class="date-and-edit">  
+        <div class="edited-text">
+            {{#formatDate date_posted "ddMMyy"}}{{/formatDate}}
+        </div>
+        {{#if isEdited}}
+        <div class="edited-text">| edited</div>
+        {{/if}}
+        <div class="edited-text-uns" id="review-id-review">{{review_id}}</div>
+    </div>
     <div class="res-header">
         <div class="review-restaurant-title"> {{rating_given}}/5 {{title}} </div>
+        {{!-- TODO: Show edit button only if user is the same as the one who posted it --}}
         <div class="edit-button" onclick="launchEdit({{review_id}})">edit</div>
     </div>
+    
     <div class="review-text">
         {{content}}
     </div>
@@ -13,16 +24,15 @@
         </a>
         <div class="vote-container">
             <div class="vote-amount-text">{{upvote_count}}</div>
-            <div class="upvote" onclick="toggleUpvote(this)"></div>
+            <div class="upvote" onclick="toggleUpvote(this, {{review_id}})"></div>
             <div class="vote-amount-text">{{downvote_count}}</div>
-            <div class="downvote" onclick="toggleDownvote(this)"></div>
+            <div class="downvote" onclick="toggleDownvote(this, {{review_id}})"></div>
         </div>
 
     </div>
 
     <!-- comments section -->
     <!-- comment 1 -->
-    {{!-- TODO: Uncomment when going to fix --}}
     {{#each comments}}
     <div class="comments">
         <div class="user-comment">
@@ -41,9 +51,10 @@
     <!-- Add a comment -->
     <div class="comments">
         <form id ="commentForm" class="comment-button-container">
-            <textarea class="add-comment" id="add-comment" placeholder="Write a comment."></textarea>
+            <textarea class="add-comment" id="add-comment-{{review_id}}" placeholder="Write a comment."></textarea>
             <div class="comment-button-button-container" id="comment-button-button-container">
-                <input type="submit" class="comment-box-button" id="comment-submit" value="Post"></input>
+                <div class="review-error" id="comment-error"></div>
+                <input type="submit" class="comment-box-button" id="comment-submit" onclick="addComment({{review_id}})"></input>
             </div>
         </form>
     </div>
@@ -55,23 +66,26 @@
 <div class="edit-container" style="display: none;" id="edit">
     <div class="header">
         <div class="exit" onclick="closeEdit()">X</div>
-        <button type="submit" class="delete-box-button" onclick="">Delete post</button>
+        <div style="display:flex">
+            <div class="edit-review-id" id="edit-review-id"></div>
+            <button type="submit" class="delete-box-button" onclick="deletePost()">Delete post</button>
+        </div>
     </div>
     <form class="review-box-content"  id="editReview">
         <div class="review-box-title-div">
             <textarea class="review-box-title" placeholder="Add a title" id="edit-review-title"></textarea>
             <div class="star-group" id="edit-star-rating">
-                <input type="radio" class="star" id="one" name="edit-star_rating" checked>
-                <input type="radio" class="star" id="two" name="edit-star_rating">
-                <input type="radio" class="star" id="three" name="edit-star_rating">
-                <input type="radio" class="star" id="four" name="edit-star_rating">
-                <input type="radio" class="star" id="five" name="edit-star_rating">
+                <input type="radio" class="star" id="review-one" name="edit-star_rating">
+                <input type="radio" class="star" id="review-two" name="edit-star_rating">
+                <input type="radio" class="star" id="review-three" name="edit-star_rating">
+                <input type="radio" class="star" id="review-four" name="edit-star_rating">
+                <input type="radio" class="star" id="review-five" name="edit-star_rating">
             </div>
         </div>
         <textarea class="review-box-review" placeholder="Write a review" id="edit-review-review"></textarea>
         <div class="review-button-container">
             <div class="review-error" id="edit-review-error"></div>
-            <input id="edit-submit-button" type="submit" class="review-box-button" value="Edit" onclick="submitEdit({{review_id}})">
+            <input id="edit-submit-button" type="submit" class="review-box-button" value="Edit" onclick="submitEdit()">
         </div>
     </form>
 

@@ -110,6 +110,26 @@ input[type="submit"]{
     cursor: pointer;
 }
 
+.edited-text{
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.edited-text-uns{
+    user-select: none;
+    color: white;
+    font-size: 12px;
+}
+
+.edit-review-id{
+    user-select: none;
+    color: white;
+}
+
+.date-and-edit{
+    display: flex;
+}
+
 .rating-container{
     display:flex;
     flex-flow: row;
@@ -576,7 +596,7 @@ input[type="submit"]{
 
 .comment-button-button-container{
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
 }
 
 .comment-box-button {

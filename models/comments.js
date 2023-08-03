@@ -16,6 +16,10 @@ const commentsSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    review_id: {
+      type: Number,
+      required: true,
+    },
     restaurant_id: {
         type: Number,
         ref: 'restaurants',
