@@ -120,6 +120,7 @@ body {
     height: 50px;
     border-bottom: 2px solid var(--primary-color-black);
     margin: 30px 0;
+    margin-bottom: 5px;
 }
 
 .email-password_input label {
@@ -180,7 +181,8 @@ body {
     margin: -15px 2 15px;
     display: flex;
     justify-content: right;
-    margin-top: 3px;
+    margin-top: 5px;
+    margin-bottom: 20px;
 }
 
 .forgotPassword {
@@ -199,6 +201,7 @@ body {
     margin: -15px 0 15px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
 }
 
 .forgotPassword a {
@@ -211,21 +214,47 @@ body {
 }
 
 .signup {
+    display: flex;
     font-size: .9em;
     text-align: center;
     color: var(--primary-color-jade);
     font-weight: 400;
     margin: 25px 1 10px;
+    justify-content: center;
 }
 
-.signup p a {
+.error {
+        display: flex;
+        font-size: .9em;
+        text-align: center;
+        color: red;
+        font-weight: 400;
+        margin: 25px 1 10px;
+        justify-content: center;
+}
+
+.signup-link {
     color: var(--primary-color-jade);
     text-decoration: none;
     font-weight: 700;
+    margin-left: 3px;
 }
 
-.signup p a:hover{
+.signup-link:hover{
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-link {
+    color: var(--primary-color-jade);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 3px;
+}
+
+.login-link:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .wrapper .login-form {

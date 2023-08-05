@@ -64,8 +64,6 @@ async function main () {
         username: "Nootie"
     }).lean();
 
-    // console.log(user);
-
     app.locals.user = user;
     app.use(router);
     
