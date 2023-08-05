@@ -3,15 +3,21 @@ function toggleMenu() {
     subMenu.classList.toggle("open-menu");
 }
 
-function switchUserNone(){
+async function switchUserNone(){
     const div = document.querySelector("#userIntro");
     const div1 = document.querySelector("#user-menu-intro");
     const img = document.querySelector("#user-pic-id")
     div.innerText = "Sign in";
     div1.innerText = "Guest";
     img.src = "images/blank_user.webp";
-    const link = document.querySelector("#user-page-link");
-    link.href = "register.html";
+
+    const response = await fetch ("/logout", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    window.location.href = "/sign_in";
 }
 
 function toggleEditProfile(){

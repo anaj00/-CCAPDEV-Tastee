@@ -10,6 +10,9 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
     console.log("Request to root received.");
+    if (req.session.authorized){
+        res.redirect("/");
+    }
     res.render("sign_in", {
         value: 0
     })
@@ -18,24 +21,28 @@ router.get("/", (req, res) => {
 router.post("/register", async (req, res) => {
     console.log("Request to register received.");
     
-    await usersOP.create({
-        username: req.body.username,
-        password: req.body.password
-    })
-    .then (() => {
-        console.log("Register user succesful");
-        res.redirect("/");
-    }) 
-    .catch ((err) => {
-        console.log(err);
-        res.sendStatus(400);
-    })
+    if (req.session.authorized){
+        await usersOP.create({
+            username: req.body.username,
+            password: req.body.password
+        })
+        .then (() => {
+            console.log("Register user succesful");
+            res.redirect("/");
+        }) 
+        .catch ((err) => {
+            console.log(err);
+            res.sendStatus(400);
+        })
+    } else {
+        res.redirect("/sign_in");
+    }
 });
 
 router.post("/sign_in", async (req, res) => {
     console.log("Request to sign in received.");
 
-    const { username, password } = req.body;
+    const {username, password} = req.body;
 
     try {
         const foundUser = await usersOP.findOne({ username: username });
@@ -49,6 +56,8 @@ router.post("/sign_in", async (req, res) => {
             console.error("Password does not match");
             return res.sendStatus(401);
         }
+        req.session.user = foundUser;
+        req.session.authorized = true;
         res.sendStatus(200);
 
     } catch (error) {

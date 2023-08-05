@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema({
     },
     pfp: {
         type: String,
-        default: 'puga.jpeg',
+        default: 'blank_user.webp',
     },
     bio: {
         type: String,
-        default: 'blank_user.webp',
+        default: '',
     }
 });
 

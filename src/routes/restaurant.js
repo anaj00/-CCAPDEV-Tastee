@@ -20,47 +20,50 @@ const router = express.Router();
 
 // Initial load
 router.get("/:restaurant_id", async (req, res, next) => {
-    const userArr = req.app.locals.user;
-    const user = userArr[0];
+    if (req.session.authorized){
+        const user = req.session.user;
 
-    // Retrieves restaurants
-    const restaurantId = req.params.restaurant_id;
-    const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
-    const restaurant = result[0];
+        // Retrieves restaurants
+        const restaurantId = req.params.restaurant_id;
+        const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
+        const restaurant = result[0];
 
-    // Retrieves reviews of the restaurant
-    let reviews = await reviewsOP.find({restaurant_id: restaurantId}).lean();
-    for (const i in reviews){ // Searches the user via username in restaurants, and inserts it in
-        let user = await usersOP.find({username: reviews[i].username}).lean();
-        reviews[i].user = user[0];
+        // Retrieves reviews of the restaurant
+        let reviews = await reviewsOP.find({restaurant_id: restaurantId}).lean();
+        for (const i in reviews){ // Searches the user via username in restaurants, and inserts it in
+            let user = await usersOP.find({username: reviews[i].username}).lean();
+            reviews[i].user = user[0];
 
-        let comments = await commentsOP.find({review_id: reviews[i].review_id}).lean();
-        reviews[i].comments = comments;
+            let comments = await commentsOP.find({review_id: reviews[i].review_id}).lean();
+            reviews[i].comments = comments;
 
-        for (const j in comments){
-            let user = await usersOP.find({username: comments[j].username}).lean();
-            comments[j].pfp = user[0].pfp;
+            for (const j in comments){
+                let user = await usersOP.find({username: comments[j].username}).lean();
+                comments[j].pfp = user[0].pfp;
+            }
+
+            console.log(reviews[i]);
         }
 
-        console.log(reviews[i]);
-    }
+        
+        
 
-    
-    
-
-    if (!restaurant) {
-        return res.status(404).send("Restaurant not found");
-    }
-
-
-    res.render('restaurant', 
-        {   
-            user: user,
-            restaurant: restaurant,
-            reviews: reviews,
-            value: 1
+        if (!restaurant) {
+            return res.status(404).send("Restaurant not found");
         }
-    );
+
+
+        res.render('restaurant', 
+            {   
+                user: user,
+                restaurant: restaurant,
+                reviews: reviews,
+                value: 1
+            }
+        );
+    } else {
+            res.redirect("/sign_in");
+    }
 })
 
 // Posting a review
@@ -75,8 +78,7 @@ router.post("/:restaurant_id", async (req, res) => {
     const id = highestReviewId ? highestReviewId.review_id + 1 : 1;
     
     // Gets user
-    const userArr = req.app.locals.user;
-    const user = userArr[0];
+    const user = req.session.user;
 
     await reviewsOP.create({
         review_id: id,
@@ -109,8 +111,7 @@ router.post("/:restaurant_id/:review_id/comment", async (req, res) => {
     const id = highestCommentId ? highestCommentId.comment_id + 1 : 1;
     
     // Gets user
-    const userArr = req.app.locals.user;
-    const user = userArr[0];
+    const user = req.session.user;
 
     console.log(req.body);
     await commentsOP.create({

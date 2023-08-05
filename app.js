@@ -3,6 +3,7 @@ import { dirname } from "path";
 import { fileURLToPath } from 'url';
 import express from 'express';
 import exphbs from 'express-handlebars';
+import session from 'express-session';
 
 // Routers
 import router from "./src/routes/index.js" // main router that routes to all pages
@@ -57,14 +58,25 @@ async function main () {
     app.set("view cache", false);
 
     app.use(express.json());
+
+    // sid.signature
+    app.use(session({
+        secret: "thisismysecret!",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 1000*60*60*24*30,
+            httpOnly: true
+        }
+    }));
     
     app.use(express.urlencoded({extended: true})) // for reading information passed to the website
     
-    const user = await userOP.find({
-        username: "Nootie"
-    }).lean();
+    // const user = await userOP.find({
+    //     username: "Nootie"
+    // }).lean();
 
-    app.locals.user = user;
+    // app.locals.user = user;
     app.use(router);
     
 
