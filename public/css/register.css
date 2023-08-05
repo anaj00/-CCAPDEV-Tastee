@@ -179,7 +179,8 @@ body {
     font-weight: 500;
     margin: -15px 2 15px;
     display: flex;
-    justify-content: left;
+    justify-content: right;
+    margin-top: 3px;
 }
 
 .forgotPassword {
