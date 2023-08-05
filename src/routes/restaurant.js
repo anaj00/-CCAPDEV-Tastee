@@ -6,6 +6,7 @@ import exphbs from 'express-handlebars';
 import restaurantsOP from "./../../models/restaurants.js" ;
 import reviewsOP from "./../../models/reviews.js";
 import usersOP from "./../../models/user.js";
+import commentsOP from "../../models/comments.js";
 
 import {
   initializeDbContents,
@@ -14,11 +15,10 @@ import {
   insertNewComment,
   insertNewRestaurant,
 } from "../../src/db/dboperations.js"
-import commentsOP from "../../models/comments.js";
 
 const router = express.Router();
 
-// TODO: Find a way to retrieve all comments of each review
+// Initial load
 router.get("/:restaurant_id", async (req, res, next) => {
     const userArr = req.app.locals.user;
     const user = userArr[0];
@@ -33,7 +33,20 @@ router.get("/:restaurant_id", async (req, res, next) => {
     for (const i in reviews){ // Searches the user via username in restaurants, and inserts it in
         let user = await usersOP.find({username: reviews[i].username}).lean();
         reviews[i].user = user[0];
+
+        let comments = await commentsOP.find({review_id: reviews[i].review_id}).lean();
+        reviews[i].comments = comments;
+
+        for (const j in comments){
+            let user = await usersOP.find({username: comments[j].username}).lean();
+            comments[j].pfp = user[0].pfp;
+        }
+
+        console.log(reviews[i]);
     }
+
+    
+    
 
     if (!restaurant) {
         return res.status(404).send("Restaurant not found");
@@ -50,6 +63,7 @@ router.get("/:restaurant_id", async (req, res, next) => {
     );
 })
 
+// Posting a review
 router.post("/:restaurant_id", async (req, res) => {
     // Gets restaurant obj
     const restaurantId = req.params.restaurant_id;
@@ -84,6 +98,7 @@ router.post("/:restaurant_id", async (req, res) => {
 
 });
 
+// Posting a comment
 router.post("/:restaurant_id/:review_id/comment", async (req, res) => {
     const review_id = req.params.review_id;
     const restaurant_id = req.params.restaurant_id;
@@ -91,7 +106,7 @@ router.post("/:restaurant_id/:review_id/comment", async (req, res) => {
     const review = result[0];
 
     const highestCommentId =  await commentsOP.findOne().sort("-comment_id");
-    const id = highestCommentId ? highestCommentId.review_id + 1 : 1;
+    const id = highestCommentId ? highestCommentId.comment_id + 1 : 1;
     
     // Gets user
     const userArr = req.app.locals.user;

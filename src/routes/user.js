@@ -8,6 +8,7 @@ import exphbs from 'express-handlebars';
 import reviewsOP from "../../models/reviews.js";
 import commentsOP from "../../models/comments.js";
 import userOP from "../../models/user.js";
+import restaurantsOP from "../../models/restaurants.js";
 
 const router = express.Router();
 
@@ -21,13 +22,24 @@ router.get("/", async (req, res) => {
     
     // Retrieves reviews of the user
     const reviews = await reviewsOP.find({
-        "user.username": user.username
+        username: user.username
     }).lean();
+
+    // Retrieves restaurant name from each review
+    for (const i in reviews){
+        const restaurant = await restaurantsOP.find({restaurant_id: reviews[i].restaurant_id}).lean();
+        reviews[i].restaurant_name = restaurant[0].name;
+    }
 
     // Retrieves comments of the user
     const comments = await commentsOP.find({
-        "user.username": user.username
+        username: user.username
     }).lean();
+
+    for (const j in comments){
+        const restaurant = await restaurantsOP.find({restaurant_id: comments[j].restaurant_id}).lean();
+        comments[j].restaurant_name = restaurant[0].name;
+    }
 
     res.render("user", {
             user: user,
@@ -53,15 +65,25 @@ router.get("/:username", async (req, res) => {
 
     // Retrieves reviews of the user
     const reviews = await reviewsOP.find({
-        "user.username": userCheck.username
+        username: userCheck.username
     }).lean();
 
-    console.log(reviews);
+    for (const i in reviews){
+        const restaurant = await restaurantsOP.find({restaurant_id: reviews[i].restaurant_id}).lean();
+        reviews[i].restaurant_name = restaurant[0].name;
+    }
 
     // Retrieves comments of the user
     const comments = await commentsOP.find({
-        "user.username": userCheck.username
+        username: userCheck.username
     }).lean();
+
+
+    for (const j in comments){
+        const restaurant = await restaurantsOP.find({restaurant_id: comments[j].restaurant_id}).lean();
+        comments[j].restaurant_name = restaurant[0].name;
+    }
+    console.log(comments);
 
     res.render("user", {
             userCheck: userCheck,

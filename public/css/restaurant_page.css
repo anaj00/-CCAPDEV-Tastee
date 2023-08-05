@@ -110,6 +110,10 @@ input[type="submit"]{
     cursor: pointer;
 }
 
+.edit-button:hover {
+    text-decoration: underline;
+}
+
 .edited-text{
     margin-right: 5px;
     font-size: 12px;
@@ -117,7 +121,7 @@ input[type="submit"]{
 
 .edited-text-uns{
     user-select: none;
-    color: white;
+    color: rgba(30, 30, 30, 0.07);;
     font-size: 12px;
 }
 
@@ -344,6 +348,10 @@ input[type="submit"]{
     margin-top: 6px;
     text-decoration: none;
     color: var(--primary-color-black);
+}
+
+.reviewer-user:hover {
+    text-decoration: underline;
 }
 
 

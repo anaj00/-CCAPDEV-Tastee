@@ -36,13 +36,13 @@
     {{#each comments}}
     <div class="comments">
         <div class="user-comment">
-            <a class="review-user" href="../user_pages/puga-chan.html">
-                <img class="reviewer-icon" src="../static/images/{{comments.user.pfp}}">
-                <div class="reviewer-user">{{comments.user}}</div>
+            <a class="review-user" href="http://localhost:3000/user/{{this.username}}">
+                <img class="reviewer-icon" src="../static/images/{{this.pfp}}">
+                <div class="reviewer-user">{{this.username}}</div>
             </a>
 
             <div class="user-comment-text">
-                {{comments.content}}
+                {{this.content}}
             </div>
         </div>
     </div>

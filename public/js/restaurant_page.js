@@ -158,27 +158,29 @@ async function submitEdit(){
         event.preventDefault();
         const reviewTitle = document.getElementById('edit-review-title').value;
         const starRating = document.querySelector('input[name="edit-star_rating"]:checked').id;
-        console.log(review_id);
+        // console.log("ID", review_id);
+//         console.log("Star Rating:", starRating);
 
         // BUG: EW WTF IS THIS,,, I AM ASHAMED
         let rating = 1;
         switch (starRating){
-                case "five":
+                case "review-five":
                         rating = 5;
                         break;
-                case "four":
+                case "review-four":
                         rating = 4;
                         break;
-                case "three":
+                case "review-three":
                         rating = 3;
                         break;
-                case "two":
+                case "review-two":
                         rating = 2;
                         break;
-                case "one":
+                case "review-one":
                         rating = 1
                         break;
         };
+        console.log("Rating", rating);
                                         
         const reviewContent = document.getElementById('edit-review-review').value;
 
@@ -207,7 +209,7 @@ async function submitEdit(){
                         location.reload();
                 } else {
                         console.log("ERROR");
-        }
+                }
         }
 }
 
