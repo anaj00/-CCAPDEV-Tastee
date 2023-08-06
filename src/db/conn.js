@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const mongoURI = process.env.MONGODB_URI();
+const mongoURI = process.env.MONGODB_URI;
 const client = new MongoClient(mongoURI);
 
 // Establishes the initial connection

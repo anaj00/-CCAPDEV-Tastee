@@ -17,7 +17,7 @@ import userOP from "./models/user.js";
 
 
 async function main () {
-    const DB_URL = process.env.MONGODB_URI();
+    const DB_URL = process.env.MONGODB_URI;
     connectToMongo((err) => {
         console.log("Attemping connection")
             if (err) {
