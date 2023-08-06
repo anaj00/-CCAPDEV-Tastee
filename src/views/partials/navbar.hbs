@@ -1,19 +1,16 @@
-<link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css">
-<script src="../static/js/index_script.js"></script>
-
 <nav>
     <div class="navbar">
         <a class="navbar-logo" href="http://localhost:3000">tastee</a>
-        {{#if value}}
-        {{!-- <div class="search-bar-nav">
+        {{#if user}}
+        <div class="search-bar-nav">
             <form id="search-form">
-                <input class="search" type="text" id="search-input" placeholder="Search">
+                <input type="text" id="search-input" placeholder="Search" class="search">
             </form>
             <button class="search-icon-nav" id="search-button"></button>
-        </div> --}}
+        </div>
         <div id="userIntro" class="login" onclick="toggleMenu()">Hello, {{user.username}}</div>
         {{else}}
-        <div id="userIntro" class="login" onclick="toggleMenu()">Sign in</div>
+        <div id="userIntro" class="login" href="http://localhost:3000/sign_in">Sign in</div>
         {{/if}}
 
         
@@ -44,36 +41,42 @@
 
             </div>
         </div>
+
+        {{!-- Search bar dropdown list --}}
+        <div class="search-bar-list" style="display: none" id="search-bar-list">
+        </div>       
     </div>
 </nav>
+
 
 <div class="overlay" style="display: none;" id="overlay"></div>
 <div class="edit-profile" style="display: none;" id="edit-profile">
     <div class="exit" onclick="closeEdit()">X</div>
     <div class="edit-image">
-        <img src="static/images/photo-1517849845537-4d257902454a.webp" class="edit-image-circle" id="user-pic-id"></img>
-        <div class="edit-image-text">Edit profile picture</div>
+        <img src="../static/images/{{user.pfp}}" class="edit-image-circle" id="user-pic-id"></img>
+        <button type="submit" class="btn" onclick="editPFP()">Edit profile picture</button>
     </div>
     <div class="edit-right">
-        <form action="localhost:3000">
-            <div class="edit-input">
-                <label>Username</label><br>
-                <input type="text" id="edit-username">
-            </div>
+        <form>
             <div class="edit-input">
                 <label>Bio</label><br>
-                <input type="text" id="edit-bio">
+                <textarea type="text" id="edit-bio" ></textarea>
             </div>
-            <div class="edit-input">
-                <label>Email</label><br>
-                <input type="email" id="edit-email">
+            <div class="btndv">
+                <button type="submit" class="btn" onclick="editBio()">Save bio</button>
             </div>
-            <div class="edit-input">
-                <label>Password</label><br>
-                <input type="password" id="edit-password">
-            </div>
-            <button type="submit" class="btn">Edit profile</button>
-
         </form>
     </div>
 </div>
+
+{{!-- Edit PFP --}}
+<div class="edit-photo" id="edit-pfp" style="display: none;">
+    <div class="exit" onclick="closeEditPFP()">X</div>
+    <form id="profilePictureForm" enctype="multipart/form-data" class="inputPicture">
+        <input type="file" id="profilePictureInput" accept="image/*" class="inputPicture" name="image">
+        <button type="submit" class="edit-image-text" onclick="uploadPFP()">Save changes</button>
+    </form>
+</div>
+
+<link rel="stylesheet" type="text/css" media="all" href="../static/css/index.css">
+<script src="../static/js/index_script.js"></script>

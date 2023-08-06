@@ -75,6 +75,7 @@ body {
 .login:hover {
     color: var(--primary-color-black);
     background-color: var(--primary-color-white);
+    cursor: pointer;
 }
 
 .sub-menu-wrap{
@@ -100,6 +101,15 @@ body {
 .user-info{
     display: flex;
     align-items: center;
+}
+
+.user-pic {
+    width: 150px;
+        /* Set the desired width */
+    height: 150px;
+    /* Set the desired height */
+    object-fit: cover;
+    /* Keep the aspect ratio and cover the container */
 }
 
 .user-info h2{

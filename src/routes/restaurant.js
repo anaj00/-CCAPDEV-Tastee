@@ -20,7 +20,6 @@ const router = express.Router();
 
 // Initial load
 router.get("/:restaurant_id", async (req, res, next) => {
-    if (req.session.authorized){
         const user = req.session.user;
 
         // Retrieves restaurants
@@ -61,9 +60,6 @@ router.get("/:restaurant_id", async (req, res, next) => {
                 value: 1
             }
         );
-    } else {
-            res.redirect("/sign_in");
-    }
 })
 
 // Posting a review

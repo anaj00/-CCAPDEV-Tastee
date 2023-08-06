@@ -21,7 +21,6 @@ router.get("/", (req, res) => {
 router.post("/register", async (req, res) => {
     console.log("Request to register received.");
     
-    if (req.session.authorized){
         await usersOP.create({
             username: req.body.username,
             password: req.body.password
@@ -34,9 +33,6 @@ router.post("/register", async (req, res) => {
             console.log(err);
             res.sendStatus(400);
         })
-    } else {
-        res.redirect("/sign_in");
-    }
 });
 
 router.post("/sign_in", async (req, res) => {

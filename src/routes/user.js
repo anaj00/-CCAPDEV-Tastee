@@ -12,7 +12,7 @@ import restaurantsOP from "../../models/restaurants.js";
 
 const router = express.Router();
 
-
+// TODO: Create establishment view user
 router.get("/", async (req, res) => {
     if (req.session.authorized){
         console.log("Request to root received.");

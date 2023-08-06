@@ -64,12 +64,13 @@ body {
     align-items: center;
 
     background-color: var(--primary-color-white);
-    width: 23%;
+    width: 440px;
     border-radius: 10px;
     padding-top: .3%;
     padding-bottom: .3%;
     padding-left: .3%;
     margin-right: auto;
+    z-index: 5;
 }
 
 .search-icon-nav {
@@ -88,6 +89,39 @@ body {
 .search-icon-nav:hover{
     filter: brightness(0);
 }
+
+.search-bar-list{
+    font-size: 15px;
+    padding-left: .3%;
+    padding-right: .3%;
+    padding-top: 40px;
+    position: absolute;
+    top: 10px;
+    left: 201px;
+    z-index: 1;
+    max-height: 150px;
+    width: 395px;
+    /* border: 1px solid black; */
+    background-color: var(--primary-color-white);
+    border-radius: var(--border-rad);
+    overflow: auto;
+}
+
+.search-bar-result {
+    display: block;
+    /* border: 1px solid black; */
+    margin-bottom: 5px;
+    color: var(--primary-color-black);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.search-bar-result:hover {
+    color: var(--primary-color-jade);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 input[type="text"],
 textarea {
@@ -482,7 +516,7 @@ textarea {
     padding: 10px;
     background-color: var(--primary-color-white);
     border-radius: var(--border-rad);
-    z-index: 9999;
+    z-index: 9998;
 }
 
 .overlay {
@@ -495,6 +529,11 @@ textarea {
     /* Semi-transparent black color */
     z-index: 3;
     /* Set a lower z-index than the target-div */
+}
+
+.inputPicture {
+    display: flex;
+    justify-content: center;
 }
 
 .edit-image{
@@ -518,13 +557,42 @@ textarea {
 }
 
 .edit-right{
-    margin-top: 15%;
+    display: flex;
+    margin-top: 19%;
     margin-left: 5%;
     margin-right: 5%;
     flex-direction: column;
     display: flex;
     /* border: 1px solid black; */
+    height: 50%;
     width: 60%;
+    justify-content: right;
+}
+
+.edit-photo{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 200px;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: var(--primary-color-white);
+    border-radius: var(--border-rad);
+    z-index: 9999;
+}
+
+.btndv {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+
+.edit-image-text:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 #edit-username,
@@ -532,32 +600,33 @@ textarea {
 #edit-email,
 #edit-password{
     border: 1px solid black;
-    width: 99%;
+    width: 97%;
+    height: 100%;
+    resize: none;
 }
 
 .edit-input {
-    height: 30%;
+    height: 100%;
+    margin-bottom: 40px;
     /* border: 1px solid black; */
 }
 
 .btn {
     display: flex;
-    width: 30%;
-    justify-content: center;
-    padding: 5px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 
     /* border */
     border-radius: var(--border-rad);
     background-color: var(--primary-color-jade);
-    height: 28px;
+    height: 30px;
 
     /* text */
     color: var(--primary-color-white);
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     text-decoration: none;
+    border: none;
 }
 
 .btn:hover {

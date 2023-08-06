@@ -28,12 +28,11 @@ async function registerUser(){
 
             const json = JSON.stringify(data);
 
-            // TODO: Insert fetching here.
             const response = await fetch ("sign_in/register", {
                 method: "POST",
                 body: json,
                 headers: {
-                                "Content-Type": "application/json"
+                    "Content-Type": "application/json"
                 }
             });
 
