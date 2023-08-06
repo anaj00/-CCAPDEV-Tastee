@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     bio: {
         type: String,
         default: '',
+    },
+    restaurant_id: {
+        type: Number,
+        default: 0
     }
 });
 

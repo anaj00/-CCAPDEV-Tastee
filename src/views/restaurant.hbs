@@ -21,7 +21,8 @@
             </img>
         </div>
 
-
+        {{!-- // TODO: Create establishment view --}}
+        {{#if (eq user.restaurant_id 0)}}
         <div class="review-comment-box">
                 <form class="review-box-content" id="reviewForm">
                     <div class="review-box-title-div">
@@ -40,8 +41,8 @@
                         <input type="submit" class="review-box-button" id="review-submit" value="Post"></input>
                     </div>
                 </form>
-            </div>
         </div>
+        {{/if}}
 
         <div class="reviews">
             <div class="review-title">Reviews</div>

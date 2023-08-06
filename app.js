@@ -47,8 +47,13 @@ async function main () {
                 const minutes = date.getMinutes().toString().padStart(2, '0');
 
                 return `${day}/${month}/${year} ${hours}:${minutes}`;
+            },
+            eq: function (a, b) {
+                return a === b;
+            },
+            or: function (a, b) {
+                return a || b;
             }
-
         }
     }));
     app.set("view engine", "hbs");

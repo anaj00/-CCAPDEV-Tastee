@@ -20,8 +20,8 @@ const router = express.Router();
 
 // Initial load
 router.get("/:restaurant_id", async (req, res, next) => {
-        const user = req.session.user;
-
+    
+        const currUser = req.session.user;
         // Retrieves restaurants
         const restaurantId = req.params.restaurant_id;
         const result = await restaurantsOP.find({restaurant_id: restaurantId}).lean();
@@ -32,6 +32,7 @@ router.get("/:restaurant_id", async (req, res, next) => {
         for (const i in reviews){ // Searches the user via username in restaurants, and inserts it in
             let user = await usersOP.find({username: reviews[i].username}).lean();
             reviews[i].user = user[0];
+            reviews[i].currUser = currUser;
 
             let comments = await commentsOP.find({review_id: reviews[i].review_id}).lean();
             reviews[i].comments = comments;
@@ -54,12 +55,13 @@ router.get("/:restaurant_id", async (req, res, next) => {
 
         res.render('restaurant', 
             {   
-                user: user,
+                user: currUser,
                 restaurant: restaurant,
                 reviews: reviews,
                 value: 1
             }
         );
+
 })
 
 // Posting a review
@@ -206,7 +208,6 @@ router.delete("/:restaurant_id/:review_id/delete", async (req,res) => {
         res.sendStatus(404);
     }
 });
-
 
 
 // Export

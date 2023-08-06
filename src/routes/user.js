@@ -12,7 +12,6 @@ import restaurantsOP from "../../models/restaurants.js";
 
 const router = express.Router();
 
-// TODO: Create establishment view user
 router.get("/", async (req, res) => {
     if (req.session.authorized){
         console.log("Request to root received.");
@@ -94,6 +93,16 @@ router.get("/:username", async (req, res) => {
         res.redirect("/sign_in");
     }
 })
+
+router.get("/logout", async (req, res) => {
+        try {
+            console.log("Signed out");
+            req.session.destroy();
+            // res.redirect("/sign_in");
+        } catch (err){
+            console.log(err);
+        }
+});
 
 // Export
 export default router;

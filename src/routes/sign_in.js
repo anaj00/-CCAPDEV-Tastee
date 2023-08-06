@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
         })
         .then (() => {
             console.log("Register user succesful");
-            res.redirect("/");
+            res.redirect("/sign_in");
         }) 
         .catch ((err) => {
             console.log(err);

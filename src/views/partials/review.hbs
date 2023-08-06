@@ -10,8 +10,10 @@
     </div>
     <div class="res-header">
         <div class="review-restaurant-title"> {{rating_given}}/5 {{title}} </div>
-        {{!-- TODO: Show edit button only if user is the same as the one who posted it --}}
+        {{!-- // TODO: Show edit button only if user is the same as the one who posted it --}}
+        {{#if (eq currUser.username user.username)}}
         <div class="edit-button" onclick="launchEdit({{review_id}})">edit</div>
+        {{/if}}
     </div>
     
     <div class="review-text">
@@ -22,12 +24,15 @@
             <img class="reviewer-icon" src="../static/images/{{user.pfp}}">
             <div class="reviewer-user">{{user.username}}</div>
         </a>
+        {{#if ( or (eq currUser.restaurant_id 0)(eq currUser.restaurant_id restaurant_id))}}
         <div class="vote-container">
             <div class="vote-amount-text">{{upvote_count}}</div>
             <div class="upvote" onclick="toggleUpvote(this, {{review_id}})"></div>
             <div class="vote-amount-text">{{downvote_count}}</div>
             <div class="downvote" onclick="toggleDownvote(this, {{review_id}})"></div>
         </div>
+        {{/if}}
+
 
     </div>
 
@@ -49,15 +54,18 @@
     {{/each}}
 
     <!-- Add a comment -->
+    {{#if ( or (eq currUser.restaurant_id 0)(eq currUser.restaurant_id restaurant_id))}}
     <div class="comments">
         <form id ="commentForm" class="comment-button-container">
             <textarea class="add-comment" id="add-comment-{{review_id}}" placeholder="Write a comment."></textarea>
             <div class="comment-button-button-container" id="comment-button-button-container">
                 <div class="review-error" id="comment-error"></div>
                 <input type="submit" class="comment-box-button" id="comment-submit" onclick="addComment({{review_id}})"></input>
+                {{../../user.restaurant_id}}
             </div>
         </form>
     </div>
+    {{/if}}
 
 </div>
 

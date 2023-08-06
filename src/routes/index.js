@@ -26,7 +26,6 @@ import restaurantsOP from "../../models/restaurants.js";
 const router = Router();
 
     router.get("/", async (req, res, next) => {
-        if (req.session.authorized){
             console.log("Request to root received.");
             
             const restaurants = await restaurantsOP.find({}).lean();
@@ -36,9 +35,6 @@ const router = Router();
                 restaurants: restaurants,
                 value: 1
             });
-        } else {
-            res.redirect("/sign_in");
-        }
     })
     
     router.use("/restaurant", restaurantRouter)
@@ -47,9 +43,14 @@ const router = Router();
     
     router.use("/sign_in", sign_inRouter);
 
-    router.get("/logout", (req, res) => {
-        req.session.destroy();
-        res.redirect("/sign_in");
+    router.get("/logout", async (req, res) => {
+        try {
+            res.redirect("/sign_in");
+            console.log("Signed out");
+            req.session.destroy();
+        } catch (err){
+            console.log(err);
+        }
     });
 
     router.post("/search", async (req, res) => {

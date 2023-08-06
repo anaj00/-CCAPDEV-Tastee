@@ -37,7 +37,7 @@ async function registerUser(){
             });
 
             if (response.status == 200){
-                window.location.href = "/"
+                window.location.href = "/sign_in"
             } 
             else {
                 error.textContent = "User taken."

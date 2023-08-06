@@ -17,6 +17,8 @@ async function switchUserNone(){
             "Content-Type": "application/json"
         }
     });
+    console.log("Logged out");
+    location.reload();
     window.location.href = "/sign_in";
 }
 
