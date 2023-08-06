@@ -17,7 +17,7 @@ import userOP from "./models/user.js";
 
 
 async function main () {
-    const DB_URL = process.env.MONGODB_URI;
+    const DB_URL = "mongodb://127.0.0.1:27017/Tastee"
     connectToMongo((err) => {
         console.log("Attemping connection")
             if (err) {
@@ -88,7 +88,7 @@ async function main () {
     /////////////////////////////////////////////////////////////////////////////
     
     // App listener    
-    app.listen(process.env.PORT, () =>{
+    app.listen(3000, () =>{
         console.log("Express app now listening...");
     });
 }
