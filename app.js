@@ -88,7 +88,7 @@ async function main () {
     /////////////////////////////////////////////////////////////////////////////
     
     // App listener    
-    app.listen(process.env.PORT(), () =>{
+    app.listen(process.env.PORT, () =>{
         console.log("Express app now listening...");
     });
 }
