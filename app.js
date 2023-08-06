@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { dirname } from "path";
 import { fileURLToPath } from 'url';
 import express from 'express';
@@ -18,7 +17,7 @@ import userOP from "./models/user.js";
 
 
 async function main () {
-    const DB_URL = "mongodb://127.0.0.1:27017/Tastee"
+    const DB_URL = process.env.MONGODB_URI();
     connectToMongo((err) => {
         console.log("Attemping connection")
             if (err) {
@@ -89,7 +88,7 @@ async function main () {
     /////////////////////////////////////////////////////////////////////////////
     
     // App listener    
-    app.listen(3000, () =>{
+    app.listen(process.env.PORT(), () =>{
         console.log("Express app now listening...");
     });
 }
